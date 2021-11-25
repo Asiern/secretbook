@@ -1,0 +1,1 @@
+export { biometricAuth } from './auth'

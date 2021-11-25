@@ -1,21 +1,24 @@
-import { StatusBar } from 'expo-status-bar'
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useContext, useState } from 'react'
+import AppLoading from 'expo-app-loading'
+import { useFonts } from 'expo-font'
+
+import AuthContext from './app/context/AuthContext'
+import Router from './app/router/Router'
 
 export default function App() {
+    const [isAuth, setAuth] = useState(useContext(AuthContext))
+    const [loaded, error] = useFonts({
+        Regular: require('./assets/fonts/Poppins-Regular.ttf'),
+        Medium: require('./assets/fonts/Poppins-Medium.ttf'),
+    })
+    if (error) console.log('Could not load fonts')
+
+    if (!loaded) {
+        return <AppLoading />
+    }
     return (
-        <View style={styles.container}>
-            <Text>Open up App.tsx to start working on your app!</Text>
-            <StatusBar style="auto" />
-        </View>
+        <AuthContext.Provider value={[isAuth, setAuth]}>
+            <Router />
+        </AuthContext.Provider>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-})
