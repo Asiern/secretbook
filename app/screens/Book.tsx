@@ -1,7 +1,9 @@
 import { useNavigation } from '@react-navigation/core'
 import React from 'react'
 import { View, StyleSheet, ScrollView } from 'react-native'
-import { Button } from '../components'
+import { Button, ListItem } from '../components'
+import { secrets } from '../data/secrets'
+import { ISecret } from '../utils'
 
 export function Book() {
     const navigation = useNavigation()
@@ -9,6 +11,15 @@ export function Book() {
         <View style={styles.container}>
             <ScrollView style={styles.list}>
                 {/* TODO map secrets */}
+                {secrets.map(({ name, description, password }: ISecret) => {
+                    return (
+                        <ListItem
+                            name={name}
+                            description={description}
+                            password={password}
+                        />
+                    )
+                })}
             </ScrollView>
             <Button
                 label="Add New Secret"

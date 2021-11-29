@@ -31,3 +31,12 @@ export function generatePhrase(passcode: string): string {
 export function checkPasscode(passcode: string, phrase: string): boolean {
     return phrase === generatePhrase(passcode)
 }
+
+/**
+ *
+ * @param password
+ * @returns decrypted password
+ */
+export function decryptPassword(password: string): string {
+    return 'Clipboard'
+}
