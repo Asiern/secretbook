@@ -1,20 +1,25 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { TextInput } from '..'
 import { h1, p } from '../../themes'
 
-export function Password() {
+interface IPassword {
+    state: string | null
+    action: Dispatch<SetStateAction<string>> | null
+}
+
+export function Password({ state }: IPassword) {
     return (
         <View style={styles.container}>
-            <Text style={[h1, { marginTop: 20 }]}>Password setup</Text>
+            <Text style={[h1, { marginTop: 20 }]}>Encryption Key Setup</Text>
             <TextInput
-                placeholder="Password"
+                placeholder="Encryption Key"
                 value=""
                 onChangeText={() => null}
                 icon="key"
             />
             <Text style={[p, { textAlign: 'center' }]}>
-                Password will be used to encrypt all your passwords.
+                This key will be used to encrypt all your passwords.
             </Text>
         </View>
     )

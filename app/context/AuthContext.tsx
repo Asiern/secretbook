@@ -1,3 +1,3 @@
-import { createContext, Dispatch, SetStateAction } from 'react'
+import { createContext } from 'react'
 
-export default createContext<boolean>(false)
+export default createContext(null)

@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\asiern\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add react-native-reanimated2
+  C:\Program Files\nodejs\node.exe C:\Users\asiern\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @types/react-native-crypto-js
 
 PATH: 
   C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\asiern\miniconda3;C:\Users\asiern\miniconda3\Library\mingw-w64\bin;C:\Users\asiern\miniconda3\Library\usr\bin;C:\Users\asiern\miniconda3\Library\bin;C:\Users\asiern\miniconda3\Scripts;C:\Users\asiern\AppData\Local\Microsoft\WindowsApps;C:\Users\asiern\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\asiern\AppData\Roaming\npm;C:\Users\asiern\AppData\Local\GitHubDesktop\bin
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/react-native-reanimated2: Not found
+  Error: https://registry.yarnpkg.com/@types%2freact-native-crypto-js: Not found
       at Request.params.callback [as _callback] (C:\Users\asiern\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:67029:18)
       at Request.self.callback (C:\Users\asiern\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140883:22)
       at Request.emit (node:events:390:28)
@@ -41,10 +41,12 @@ npm manifest:
       },
       "dependencies": {
           "@expo/vector-icons": "^12.0.0",
+          "@react-native-async-storage/async-storage": "~1.15.0",
           "@react-navigation/native": "^6.0.6",
           "@react-navigation/native-stack": "^6.2.5",
           "expo": "~42.0.1",
           "expo-app-loading": "1.1.2",
+          "expo-constants": "~11.0.1",
           "expo-file-system": "~11.1.3",
           "expo-font": "~9.2.1",
           "expo-local-authentication": "~11.1.1",
@@ -52,7 +54,9 @@ npm manifest:
           "react": "16.13.1",
           "react-dom": "16.13.1",
           "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
+          "react-native-crypto-js": "^1.0.0",
           "react-native-gesture-handler": "~1.10.2",
+          "react-native-reanimated": "~2.2.0",
           "react-native-safe-area-context": "3.2.0",
           "react-native-screens": "~3.4.0",
           "react-native-web": "~0.13.12"
@@ -888,6 +892,13 @@ Lockfile:
     dependencies:
       "@babel/helper-plugin-utils" "^7.14.5"
   
+  "@babel/plugin-transform-object-assign@^7.10.4":
+    version "7.16.0"
+    resolved "https://registry.yarnpkg.com/@babel/plugin-transform-object-assign/-/plugin-transform-object-assign-7.16.0.tgz#750c726397f1f6402fb1ceffe9d8ff3595c8a0df"
+    integrity sha512-TftKY6Hxo5Uf/EIoC3BKQyLvlH46tbtK4xub90vzi9+yS8z1+O/52YHyywCZvYeLPOvv//1j3BPokLuHTWPcbg==
+    dependencies:
+      "@babel/helper-plugin-utils" "^7.14.5"
+  
   "@babel/plugin-transform-object-super@^7.0.0", "@babel/plugin-transform-object-super@^7.12.13", "@babel/plugin-transform-object-super@^7.14.5":
     version "7.14.5"
     resolved "https://registry.yarnpkg.com/@babel/plugin-transform-object-super/-/plugin-transform-object-super-7.14.5.tgz#d0b5faeac9e98597a161a9cf78c527ed934cdc45"
@@ -1643,6 +1654,13 @@ Lockfile:
     dependencies:
       "@nodelib/fs.scandir" "2.1.5"
       fastq "^1.6.0"
+  
+  "@react-native-async-storage/async-storage@~1.15.0":
+    version "1.15.13"
+    resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.15.13.tgz#58f1d524c6e38275dbbfc05162c8f090a4c478b6"
+    integrity sha512-OnbPmjiBOREiutFMG356w+eWiEL1WRCgXDH/o6+4S1cIkfl9SZFanxUBlGi4/Ny22KXcJHN0VtWy0gL8jqYYLg==
+    dependencies:
+      merge-options "^3.0.4"
   
   "@react-native-community/cli-debugger-ui@^4.13.1":
     version "4.13.1"
@@ -4405,6 +4423,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/is-obj/-/is-obj-1.0.1.tgz#3e4729ac1f5fde025cd7d83a896dab9f4f67db0f"
     integrity sha1-PkcprB9f3gJc19g6iW2rn09n2w8=
   
+  is-plain-obj@^2.1.0:
+    version "2.1.0"
+    resolved "https://registry.yarnpkg.com/is-plain-obj/-/is-plain-obj-2.1.0.tgz#45e42e37fccf1f40da8e5f76ee21515840c09287"
+    integrity sha512-YWnfyRwxL/+SsrWYfOpUtz5b3YD+nyfkHvjbcanzk8zgyO4ASD67uVMRt8k5bM4lLMDnXfriRhOpemw+NfT1eA==
+  
   is-plain-object@^2.0.3, is-plain-object@^2.0.4:
     version "2.0.4"
     resolved "https://registry.yarnpkg.com/is-plain-object/-/is-plain-object-2.0.4.tgz#2c163b3fafb1b606d9d17928f05c2a1c38e07677"
@@ -4928,6 +4951,13 @@ Lockfile:
     dependencies:
       buffer-alloc "^1.1.0"
   
+  merge-options@^3.0.4:
+    version "3.0.4"
+    resolved "https://registry.yarnpkg.com/merge-options/-/merge-options-3.0.4.tgz#84709c2aa2a4b24c1981f66c179fe5565cc6dbb7"
+    integrity sha512-2Sug1+knBjkaMsMgf1ctR1Ujx+Ayku4EdJN4Z+C2+JzoeF7A3OZ9KM2GY0CpQS51NR61LTurMJrRKPhSs3ZRTQ==
+    dependencies:
+      is-plain-obj "^2.1.0"
+  
   merge-stream@^1.0.1:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/merge-stream/-/merge-stream-1.0.1.tgz#4041202d508a342ba00174008df0c251b8c135e1"
@@ -5260,6 +5290,11 @@ Lockfile:
     integrity sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
     dependencies:
       minimist "^1.2.5"
+  
+  mockdate@^3.0.2:
+    version "3.0.5"
+    resolved "https://registry.yarnpkg.com/mockdate/-/mockdate-3.0.5.tgz#789be686deb3149e7df2b663d2bc4392bc3284fb"
+    integrity sha512-iniQP4rj1FhBdBYS/+eQv7j1tadJ9lJtdzgOpvsOHng/GbcDh2Fhdeq+ZRldrPYdXvCyfFUmFeEwEGXZB5I/AQ==
   
   ms@2.0.0:
     version "2.0.0"
@@ -5926,6 +5961,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
     integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
   
+  react-native-crypto-js@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/react-native-crypto-js/-/react-native-crypto-js-1.0.0.tgz#e677e022e147f41b35614416c92d655f87e2450a"
+    integrity sha512-FNbLuG/HAdapQoybeZSoes1PWdOj0w242gb+e1R0hicf3Gyj/Mf8M9NaED2AnXVOX01b2FXomwUiw1xP1K+8sA==
+  
   react-native-gesture-handler@~1.10.2:
     version "1.10.3"
     resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.10.3.tgz#942bbf2963bbf49fa79593600ee9d7b5dab3cfc0"
@@ -5936,6 +5976,16 @@ Lockfile:
       hoist-non-react-statics "^3.3.0"
       invariant "^2.2.4"
       prop-types "^15.7.2"
+  
+  react-native-reanimated@~2.2.0:
+    version "2.2.4"
+    resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.2.4.tgz#36c5d15028b0bd7d479fba5199117ac870c7a532"
+    integrity sha512-Nn648MfEEnTCEiWsl1YmfkojiLyV0NMY0EiRdDRbZNfJVfxBuyqhCxI/4Jd7aBi162qpgf8XK2mByYgvF4zLrQ==
+    dependencies:
+      "@babel/plugin-transform-object-assign" "^7.10.4"
+      fbjs "^3.0.0"
+      mockdate "^3.0.2"
+      string-hash-64 "^1.0.3"
   
   react-native-safe-area-context@3.2.0:
     version "3.2.0"
@@ -6649,6 +6699,11 @@ Lockfile:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
     integrity sha1-ucczDHBChi9rFC3CdLvMWGbONUY=
+  
+  string-hash-64@^1.0.3:
+    version "1.0.3"
+    resolved "https://registry.yarnpkg.com/string-hash-64/-/string-hash-64-1.0.3.tgz#0deb56df58678640db5c479ccbbb597aaa0de322"
+    integrity sha512-D5OKWKvDhyVWWn2x5Y9b+37NUllks34q1dCDhk/vYcso9fmhs+Tl3KR/gE4v5UNj2UA35cnX4KdVVGkG1deKqw==
   
   string-width@^2.1.0:
     version "2.1.1"

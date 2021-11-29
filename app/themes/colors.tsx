@@ -5,4 +5,5 @@ export const palette = {
     inactive: '#2e2e2e',
     white: '#FCFCFC',
     error: '#ff0000',
+    disable: '#2e2e2e',
 }

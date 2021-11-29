@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { StyleSheet, Dimensions } from 'react-native'
-import { Button, Slide } from '../components'
+import { Button, ISlide, Slide } from '../components'
 import Animated, {
     scrollTo,
     useAnimatedRef,
@@ -10,12 +10,31 @@ import Animated, {
 
 import { palette } from '../themes'
 import { useNavigation } from '@react-navigation/core'
-import { ISettings, setSettings } from '../utils'
+import { ISettings, setSettings, generatePhrase, hasBiometric } from '../utils'
 
 const { width } = Dimensions.get('screen')
 
-const slides = ['1', '2', '3', '4']
 export function Onboarding() {
+    const [passcode, setPasscode] = useState<string>('1234')
+    const wrapperSetPasscode = useCallback(
+        (value) => {
+            setPasscode(value)
+        },
+        [setPasscode]
+    )
+    const [password, setPassword] = useState<string>('passwordasd')
+    const [path, setPath] = useState<string>('path')
+    const [index, setIndex] = useState<number>(0)
+
+    function actionPasscode(value: string) {
+        setPasscode(value)
+    }
+    const slides: ISlide[] = [
+        { id: 0 },
+        { id: 1, state: passcode, action: actionPasscode },
+        { id: 2, state: password, action: actionPasscode },
+        { id: 3, state: path, action: actionPasscode },
+    ]
     const navigation = useNavigation()
     const scroll = useAnimatedRef<Animated.ScrollView>()
     const x = useSharedValue(0)
@@ -24,7 +43,11 @@ export function Onboarding() {
      * Save settings and redirect to Home screen
      */
     async function send() {
-        const settings: ISettings = {}
+        const settings: ISettings = {
+            path,
+            phrase: generatePhrase(passcode),
+            biometric: await hasBiometric(),
+        }
         await setSettings(settings)
         navigation.navigate('Home')
     }
@@ -32,6 +55,21 @@ export function Onboarding() {
     useDerivedValue(() => {
         scrollTo(scroll, x.value, 0, true)
     })
+
+    function canContinue(): boolean {
+        switch (index) {
+            case 0:
+                return true
+            case 1:
+                return passcode.length === 4
+            case 2:
+                return password.length > 8 && password.length < 16
+            case 3:
+                return path !== ''
+            default:
+                return false
+        }
+    }
 
     return (
         <Animated.View style={styles.container}>
@@ -48,7 +86,7 @@ export function Onboarding() {
                     scrollEnabled={false}
                 >
                     {slides.map((item, i) => {
-                        return <Slide key={i} id={i}></Slide>
+                        return <Slide key={i} id={i} state={item.state}></Slide>
                     })}
                 </Animated.ScrollView>
             </Animated.View>
@@ -57,18 +95,24 @@ export function Onboarding() {
                     label={'Back'}
                     name={'arrow-left'}
                     onPress={() => {
-                        if (x.value - width >= 0) x.value = x.value - width
+                        if (x.value - width >= 0) {
+                            x.value = x.value - width
+                            setIndex(index - 1)
+                        }
                     }}
+                    disable={index === 0}
                 />
                 <Button
-                    label={'Next'}
-                    name={'arrow-right'}
+                    label={index === slides.length - 1 ? 'Finish' : 'Next'}
+                    name={index === slides.length - 1 ? 'check' : 'arrow-right'}
                     onPress={async () => {
-                        if (x.value + width < slides.length * width)
+                        if (x.value + width < slides.length * width) {
                             x.value = x.value + width
-                        else await send()
+                            setIndex(index + 1)
+                        } else await send()
                     }}
                     right
+                    disable={!canContinue()}
                 />
             </Animated.View>
         </Animated.View>

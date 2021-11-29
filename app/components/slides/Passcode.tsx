@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { TextInput } from '..'
 import { h1, p } from '../../themes'
 
-export function Passcode() {
+interface IPasscode {
+    state: string
+    action: (value: string) => void
+}
+
+export function Passcode({ state, action }: IPasscode) {
     return (
         <View style={styles.container}>
             <Text style={[h1, { marginTop: 20 }]}>Passcode setup</Text>
             <TextInput
                 placeholder="Passcode"
-                value=""
-                onChangeText={() => null}
+                value={state}
+                onChangeText={(text) => action(text)}
                 icon="lock"
             />
             <Text style={[p, { textAlign: 'center' }]}>

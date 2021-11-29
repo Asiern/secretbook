@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { View, Dimensions } from 'react-native'
 import { Wellcome, Passcode, Password, Path } from './slides'
 import Constants from 'expo-constants'
@@ -7,24 +7,26 @@ const { width } = Dimensions.get('screen')
 
 export interface ISlide {
     id: number
+    state?: string
+    action?: (value: string) => void
 }
 
-function getSlide(id: number): React.ReactNode {
+function getSlide({ id, state, action }: ISlide): React.ReactNode {
     switch (id) {
         case 0:
             return <Wellcome />
         case 1:
-            return <Passcode />
+            return <Passcode state={state} action={action} />
         case 2:
-            return <Password />
+            return <Password state={state} action={action} />
         case 3:
-            return <Path />
+            return <Path state={state} action={action} />
         default:
             return null
     }
 }
 
-export function Slide({ id }: ISlide) {
+export function Slide(slide: ISlide) {
     return (
         <View
             style={{
@@ -33,7 +35,7 @@ export function Slide({ id }: ISlide) {
                 marginTop: Constants.statusBarHeight,
             }}
         >
-            {getSlide(id)}
+            {getSlide(slide)}
         </View>
     )
 }

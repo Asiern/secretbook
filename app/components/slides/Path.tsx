@@ -1,15 +1,20 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { Button, TextInput } from '..'
+import { TextInput } from '..'
 import { h1, p } from '../../themes'
 
-export function Path() {
+interface IPath {
+    state: string
+    action: Dispatch<SetStateAction<string>>
+}
+
+export function Path({ state }: IPath) {
     return (
         <View style={styles.container}>
             <Text style={[h1, { marginTop: 20 }]}>Secret Book Location</Text>
             <TextInput
                 placeholder="Folder path"
-                value=""
+                value={state}
                 onChangeText={() => null}
                 icon="folder"
             />

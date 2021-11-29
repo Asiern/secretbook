@@ -4,6 +4,10 @@ import {
     authenticateAsync,
 } from 'expo-local-authentication'
 
+/**
+ * Authenticate using biometrics
+ * @returns
+ */
 export async function biometricAuth() {
     console.log('BIOME')
     const compatible = await hasHardwareAsync()
@@ -16,4 +20,12 @@ export async function biometricAuth() {
     const result = await authenticateAsync()
     if (!result.success) throw `${result.error} - Authentication unsuccessful`
     return 'OK'
+}
+
+/**
+ * Check if device supports biometric authentication
+ * @returns true if device supports biometric auth
+ */
+export async function hasBiometric(): Promise<boolean> {
+    return await hasHardwareAsync()
 }
